@@ -1,20 +1,23 @@
 {
-  "name": "inventorymanager",
-  "version": "1.0.0",
-  "description": "Booklidio inventory manager.",
-  "homepage": "https://github.com/GuyMcKechnie/inventoryManager#readme",
-  "bugs": {
-    "url": "https://github.com/GuyMcKechnie/inventoryManager/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/GuyMcKechnie/inventoryManager.git"
-  },
-  "license": "ISC",
-  "author": "Guy McKechnie",
-  "type": "commonjs",
-  "main": "app.tsx",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  }
+    "name": "inventorymanager",
+    "version": "1.0.0",
+    "description": "Booklidio inventory manager.",
+    "homepage": "https://github.com/GuyMcKechnie/inventoryManager#readme",
+    "bugs": {
+        "url": "https://github.com/GuyMcKechnie/inventoryManager/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/GuyMcKechnie/inventoryManager.git"
+    },
+    "license": "ISC",
+    "author": "Guy McKechnie",
+    "type": "commonjs",
+    "main": "app.tsx",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "dependencies": {
+        "semantic-release": "^24.2.4"
+    }
 }
