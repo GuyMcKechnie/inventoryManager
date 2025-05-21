@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+:root {
+  font-family:
+    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  @apply text-white;
+}
+
+@utility button-base {
+  @apply flex cursor-pointer items-center justify-between gap-2 rounded-lg px-3 py-2 text-base font-medium transition-colors;
+}
+
+.button-accent {
+  @apply button-base;
+  @apply bg-blue-500 text-white hover:bg-blue-700;
+}
+
+.button-disabled {
+  @apply button-base;
+  @apply cursor-not-allowed bg-gray-200 text-gray-400;
+}
+
+.button-outlined {
+  @apply button-base;
+  @apply border border-gray-800 text-gray-400 hover:bg-gray-700 hover:text-white;
+}
+
+.button-primary {
+  @apply button-base;
+  @apply text-gray-400 hover:bg-gray-700 hover:text-white;
+}
+
+.button-secondary {
+  @apply button-base;
+  @apply bg-gray-200 text-gray-600 hover:bg-gray-300 hover:text-gray-700;
+}
+
+.dropdown li {
+  @apply cursor-pointer rounded-lg p-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white;
+}
+
+.dropdown-button-primary {
+  @apply cursor-pointer rounded-lg p-2 text-base font-medium text-gray-400 transition-colors hover:bg-gray-700 hover:text-white;
+}
+
+.graph-button-primary {
+  @apply cursor-pointer rounded-lg border border-gray-800 p-2 text-base font-medium text-gray-400 transition-colors hover:bg-gray-700 hover:text-white focus:bg-blue-500 focus:text-white;
+}
+
+.input-field {
+  @apply mt-1 mb-2 w-full rounded-lg border border-gray-900 bg-gray-800 p-2 text-sm;
+}
+
+.checkbox {
+  @apply size-4 rounded-sm border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-blue-600 focus:ring-offset-gray-800;
+}
+
+#chartContainer .apexcharts-tooltip {
+  color: #918230;
+}
+
+#chartContainer .apexcharts-tooltip .apexcharts-tooltip-series-group.active {
+  background: #092911 !important;
+}
