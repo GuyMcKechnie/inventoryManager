@@ -1,6 +1,5 @@
 .mvn
 .vscode
-data
 node_modules
 target
 DatabaseScripts/
