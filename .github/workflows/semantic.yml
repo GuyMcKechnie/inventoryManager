@@ -26,7 +26,7 @@ jobs:
               working-directory: client
             - name: Build frontend
               run: npm run build
-              working-directory: frontend
+              working-directory: client
             - run: npx semantic-release
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
