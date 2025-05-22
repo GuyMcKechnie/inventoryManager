@@ -6,8 +6,10 @@ function Header() {
   return (
     <header className="flex h-[6vh] w-full items-center justify-between border border-gray-800 bg-gray-900 px-4 py-2">
       <div className="flex items-center justify-center gap-2">
-        <BookOutlined />
-        <Typography variant="h5">Inventory Manager</Typography>
+        <img src="../../icon.svg" className="size-8"/>
+        <Typography variant="h5" className="font-times !font-bold">
+          Lidio Stock
+        </Typography>
       </div>
       <Searchbar />
       <div className="flex items-center justify-center gap-4">
