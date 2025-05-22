@@ -1,6 +1,6 @@
-import { Book, getAllBooks } from "@/features/textbooks-table/api/book";
-import { columns } from "@/features/textbooks-table/components/book-columns";
-import { DataTable } from "@/features/textbooks-table/components/book-data-table";
+import { Book, getAllBooks } from "@/features/inventory-table/api/book";
+import { columns } from "@/features/inventory-table/components/book-columns";
+import { DataTable } from "@/features/inventory-table/components/book-data-table";
 import { useEffect, useState } from "react";
 
 function Books() {

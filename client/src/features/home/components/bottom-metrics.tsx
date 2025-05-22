@@ -4,7 +4,7 @@ import SiteVisitsCard from "./bm-site-card";
 
 function BottomMetrics() {
   return (
-    <div className="flex items-center justify-between gap-4">
+    <div className="flex items-start justify-between gap-4 *:!max-w-1/3">
       <SiteVisitsCard />
       <OrderStatusCard />
       <ReviewsCard />

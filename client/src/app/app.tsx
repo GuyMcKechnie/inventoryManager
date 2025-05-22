@@ -4,12 +4,12 @@ import { createRoot } from "react-dom/client";
 import { Route, BrowserRouter as Router, Routes } from "react-router";
 import Home from "./pages/home";
 import Users from "./pages/users";
-import Books from "./pages/books";
+import Inventory from "./pages/inventory";
 
 const routes = [
   { path: "/", element: <Shell content={<Home />} /> },
   { path: "/users", element: <Shell content={<Users />} /> },
-  { path: "/textbooks", element: <Shell content={<Books />} /> },
+  { path: "/inventory", element: <Shell content={<Inventory />} /> },
 ];
 
 const App = () => {

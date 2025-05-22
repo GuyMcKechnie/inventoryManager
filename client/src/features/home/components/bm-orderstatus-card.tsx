@@ -13,15 +13,12 @@ function OrderStatusCard() {
     return chartData.reduce((acc, curr) => acc + curr.count, 0);
   }, []);
   return (
-    <Card className="flex h-full min-w-1/4 flex-col border border-gray-800 bg-gray-900">
-      <CardHeader className="items-center pb-0">
+    <Card className="flex w-full flex-col border border-gray-800 bg-gray-900">
+      <CardHeader>
         <CardTitle>Order Status</CardTitle>
       </CardHeader>
-      <CardContent className="flex-1 pb-0">
-        <ChartContainer
-          config={{}}
-          className="mx-auto aspect-square max-h-[225px]"
-        >
+      <CardContent className="flex-1">
+        <ChartContainer config={{}} className="mx-auto aspect-square h-[30vh]">
           <PieChart>
             <ChartTooltip
               cursor={false}

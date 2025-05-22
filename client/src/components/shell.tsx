@@ -1,7 +1,7 @@
 import React, { JSX } from "react";
-import Header from "./header";
-import Sidebar from "./side-bar";
 import { Toaster } from "@/components/ui/sonner";
+import { SidebarProvider } from "./ui/sidebar";
+import { AppSidebar } from "./app-sidebar";
 
 interface ShellProps {
   content: React.ReactNode;
@@ -9,18 +9,15 @@ interface ShellProps {
 
 function Shell({ content }: ShellProps): JSX.Element {
   return (
-    <main className="flex h-screen w-screen">
-      <div className="flex w-full flex-col">
-        <Header />
-        <div className="flex w-full justify-between">
-          <Sidebar />
-          <div className="h-[94vh] w-full overflow-y-scroll" id="content">
-            {content}
-          </div>
-        </div>
-        <Toaster richColors />
-      </div>
-    </main>
+    <div className="flex justify-between bg-red-500">
+      <SidebarProvider className="w-full">
+        <AppSidebar />
+        <main className="w-full" id="content">
+          {content}
+        </main>
+      </SidebarProvider>
+      <Toaster richColors />
+    </div>
   );
 }
 

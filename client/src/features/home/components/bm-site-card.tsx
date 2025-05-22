@@ -1,10 +1,9 @@
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import { Typography } from "@mui/material";
 import { Bar, BarChart, CartesianGrid, LabelList, XAxis } from "recharts";
 import { getSiteTraffic } from "../api/home";
 import { useEffect, useState } from "react";
@@ -13,7 +12,44 @@ type TrafficData = {
   month: string;
   visits: number;
 };
-function SiteChart() {
+function SiteChart({ siteTraffic }: any): any {
+  return (
+    <ChartContainer config={{}} className="h-[30vh] w-full">
+      <BarChart accessibilityLayer data={siteTraffic} layout="horizontal">
+        <CartesianGrid opacity={0.1} vertical={false} />
+        <XAxis
+          dataKey="month"
+          tickLine={false}
+          tickMargin={10}
+          axisLine={false}
+          label={"Month"}
+          tickFormatter={(value) => value.slice(0, 3)}
+        />
+        <ChartTooltip
+          cursor={false}
+          content={<ChartTooltipContent hideLabel />}
+        />
+        <Bar
+          dataKey="visits"
+          fill="var(--color-blue-500)"
+          fillOpacity={0.4}
+          label="Visits"
+          stroke="var(--color-blue-500)"
+          radius={8}
+        >
+          <LabelList
+            position="top"
+            offset={12}
+            className="fill-gray-400"
+            fontSize={12}
+          />
+        </Bar>
+      </BarChart>
+    </ChartContainer>
+  );
+}
+
+function SiteVisitsCard() {
   const [siteTraffic, setSiteTraffic] = useState<TrafficData[] | undefined>([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -33,73 +69,22 @@ function SiteChart() {
         });
     }, 1000);
   }, []);
+
   return (
-    <Card className="w-full border border-gray-800">
+    <Card className="flex w-full flex-col border border-gray-800 bg-gray-900">
+      <CardHeader>
+        <CardTitle>Site Visits</CardTitle>
+      </CardHeader>
       <CardContent>
-        <ChartContainer config={{}}>
-          {loading ? (
-            <div className="flex h-full w-full items-center justify-center">
-              <div className="h-8 w-8 animate-spin rounded-full border-4 border-blue-500 border-t-transparent"></div>
-            </div>
-          ) : (
-            <BarChart
-              accessibilityLayer
-              data={siteTraffic}
-              margin={{
-                top: 20,
-              }}
-            >
-              <CartesianGrid opacity={0.1} vertical={false} />
-              <XAxis
-                dataKey="month"
-                tickLine={false}
-                tickMargin={10}
-                axisLine={false}
-                label={"Month"}
-                tickFormatter={(value) => value.slice(0, 3)}
-              />
-              <ChartTooltip
-                cursor={false}
-                content={<ChartTooltipContent hideLabel />}
-              />
-              <Bar
-                dataKey="visits"
-                fill="var(--color-blue-500)"
-                fillOpacity={0.4}
-                label="Visits"
-                stroke="var(--color-blue-500)"
-                radius={8}
-              >
-                <LabelList
-                  position="top"
-                  offset={12}
-                  className="fill-gray-400"
-                  fontSize={12}
-                />
-              </Bar>
-            </BarChart>
-          )}
-        </ChartContainer>
+        {loading ? (
+          <div className="flex h-[30vh] w-full items-center justify-center">
+            <div className="h-8 w-8 animate-spin rounded-full border-4 border-blue-500 border-t-transparent" />
+          </div>
+        ) : (
+          <SiteChart siteTraffic={siteTraffic} />
+        )}
       </CardContent>
     </Card>
-  );
-}
-
-function SiteVisitsCard() {
-  return (
-    <div
-      id="revenue-graph"
-      className="w-full rounded-lg border border-gray-800 bg-gray-900 p-4"
-    >
-      <div className="flex items-center justify-between pb-6">
-        <div className="flex flex-row gap-4">
-          <Typography variant="h6" className="!font-bold">
-            Site Visits
-          </Typography>
-        </div>
-      </div>
-      <SiteChart />
-    </div>
   );
 }
 
