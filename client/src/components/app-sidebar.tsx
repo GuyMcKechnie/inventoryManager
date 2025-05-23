@@ -8,19 +8,18 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarTrigger,
-  useSidebar,
+  useSidebar
 } from "@/components/ui/sidebar";
+import { Typography } from "@mui/material";
 import {
   Box,
   Gauge,
-  ListCollapse,
   PanelLeftIcon,
   PieChart,
   Settings,
   ShoppingBag,
   ShoppingCart,
-  User,
+  User
 } from "lucide-react";
 import { Link } from "react-router";
 
@@ -66,7 +65,18 @@ export function AppSidebar() {
   const { toggleSidebar } = useSidebar();
   return (
     <Sidebar className="bg-gray-900" collapsible="icon">
-      <SidebarHeader />
+      <SidebarHeader className="border-b border-gray-800">
+        <SidebarMenuItem>
+          <SidebarMenuButton asChild>
+            <Link to="/">
+              <img src="../../icon.svg" className="size-8" />
+              <Typography variant="h5" className="!font-bold">
+                Lidio Stock
+              </Typography>
+            </Link>
+          </SidebarMenuButton>
+        </SidebarMenuItem>
+      </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupContent>
