@@ -175,7 +175,7 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <div className="flex h-full flex-col items-center">
+    <div className="flex h-full w-full flex-col items-center">
       <AboveTableComponents table={bookTable} updateBooks={updateBooks} />
       <div className="h-full w-full">
         <Table>

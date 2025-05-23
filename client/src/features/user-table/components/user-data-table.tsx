@@ -8,6 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { exportToCSV } from "@/lib/export";
 import { Typography } from "@mui/material";
 import {
   ColumnDef,
@@ -29,17 +30,23 @@ import {
   Upload,
 } from "lucide-react";
 import { useState } from "react";
-import { CSVLink } from "react-csv";
-import { getAllUsers, User } from "../api/user";
+import { getAllUsers } from "../api/user";
 import AddDialog from "./add-user-dialog";
-import { exportToCSV } from "@/lib/export";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  updateUsers: () => void;
 }
 
-function AboveTableComponents(table: any) {
+interface AboveTableComponentsProps {
+  table: any;
+  updateUsers: () => void;
+}
+function AboveTableComponents({
+  table,
+  updateUsers,
+}: AboveTableComponentsProps) {
   const handleExport = () => {
     getAllUsers().then((users) => {
       exportToCSV(users ?? []);
@@ -141,6 +148,7 @@ function BelowTableComponents(table: any) {
 export function DataTable<TData, TValue>({
   columns,
   data,
+  updateUsers,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [rowSelection, setRowSelection] = useState({});
@@ -168,8 +176,8 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <div className="flex h-full flex-col items-center">
-      <AboveTableComponents {...userTable} />
+    <div className="flex h-full w-full flex-col items-center">
+      <AboveTableComponents table={userTable} updateUsers={updateUsers} />
       <div className="h-full w-full">
         <Table>
           <TableHeader className="border-x border-t border-gray-800">

@@ -8,7 +8,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  useSidebar
+  useSidebar,
 } from "@/components/ui/sidebar";
 import { Typography } from "@mui/material";
 import {
@@ -19,7 +19,7 @@ import {
   Settings,
   ShoppingBag,
   ShoppingCart,
-  User
+  User,
 } from "lucide-react";
 import { Link } from "react-router";
 
