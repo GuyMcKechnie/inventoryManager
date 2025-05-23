@@ -29,7 +29,7 @@ import {
   ChevronRight,
   Upload,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getAllUsers } from "../api/user";
 import AddDialog from "./add-user-dialog";
 
@@ -175,10 +175,26 @@ export function DataTable<TData, TValue>({
     },
   });
 
+  const calculateRows = (height: number) => {
+    return Math.round(height / 60);
+  };
+
+  const mainTableContainerRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (mainTableContainerRef.current) {
+      const height = mainTableContainerRef.current.offsetHeight;
+      userTable.setPageSize(Number(calculateRows(height)));
+    }
+  }, [data]);
+
   return (
     <div className="flex h-full w-full flex-col items-center">
       <AboveTableComponents table={userTable} updateUsers={updateUsers} />
-      <div className="h-full w-full">
+      <div
+        className="h-full w-full"
+        id="main-table-container"
+        ref={mainTableContainerRef}
+      >
         <Table>
           <TableHeader className="border-x border-t border-gray-800">
             {userTable.getHeaderGroups().map((headerGroup) => (

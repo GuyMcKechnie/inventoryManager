@@ -28,7 +28,7 @@ import {
   ChevronRight,
   Upload,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { exportToCSV } from "../../../lib/export";
 import { getAllBooks } from "../api/book";
 import AddDialog from "./add-book-dialog";
@@ -82,19 +82,16 @@ function AboveTableComponents({
 }
 function BelowTableComponents(table: any) {
   return (
-    <div className="flex w-full items-center justify-between px-2 py-4">
+    <div className="flex w-full items-center justify-between px-2 py-2">
       <Typography className="font-medium whitespace-nowrap text-gray-400">
-        Showing{" "}
         <span className="font-bold text-gray-200">
-          {Math.round(
-            table.getFilteredRowModel().rows.length / table.getPageCount(),
-          )}
+          {Math.round(table.getFilteredSelectedRowModel().rows.length)}
         </span>{" "}
         of{" "}
         <span className="font-bold text-gray-200">
           {table.getFilteredRowModel().rows.length}
         </span>{" "}
-        textbooks
+        row(s) selected.
       </Typography>
       <div className="flex items-center justify-between gap-2">
         <Typography className="font-medium whitespace-nowrap text-gray-400">
@@ -174,10 +171,26 @@ export function DataTable<TData, TValue>({
     },
   });
 
+  const calculateRows = (height: number) => {
+    return Math.round(height / 60);
+  };
+
+  const mainTableContainerRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (mainTableContainerRef.current) {
+      const height = mainTableContainerRef.current.offsetHeight;
+      bookTable.setPageSize(Number(calculateRows(height)));
+    }
+  }, [data]);
+
   return (
     <div className="flex h-full w-full flex-col items-center">
       <AboveTableComponents table={bookTable} updateBooks={updateBooks} />
-      <div className="h-full w-full">
+      <div
+        className="h-full w-full"
+        id="main-table-container"
+        ref={mainTableContainerRef}
+      >
         <Table>
           <TableHeader className="border-x border-t border-gray-800">
             {bookTable.getHeaderGroups().map((headerGroup) => (
