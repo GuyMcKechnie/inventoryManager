@@ -2,8 +2,8 @@ import axiosInstance, { hasInstance } from "@/api/axios";
 import { AxiosResponse } from "axios";
 
 export interface User {
-  userUUID: string;
-  fullName: string;
+  userUUID?: string;
+  fullName?: string;
   firstName: string;
   lastName: string;
   type: number;

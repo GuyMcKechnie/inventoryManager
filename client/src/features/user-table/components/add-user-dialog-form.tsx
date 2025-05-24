@@ -13,16 +13,44 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { addUser, User } from "../api/user";
 
+interface AddUserFormData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  cellphone: string;
+  allowsMarketing?: boolean;
+  isBuyer: boolean;
+  isSeller: boolean;
+}
+
 function AddDialogForm() {
   const [loading, setLoading] = useState(false);
-  const form = useForm();
+  const form = useForm<AddUserFormData>();
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit((data) => {
           setLoading(true);
           setTimeout(() => {
-            addUser(data as User)
+            const { isSeller, isBuyer, ...userData } = data;
+            const user: User = {
+              firstName: userData.firstName,
+              lastName: userData.lastName,
+              email: userData.email,
+              cellphone: userData.cellphone,
+              allowsMarketing: userData.allowsMarketing || false,
+              type: -1,
+            };
+
+            if (isSeller && isBuyer) {
+              user.type = 2;
+            } else if (isBuyer) {
+              user.type = 1;
+            } else if (isSeller) {
+              user.type = 0;
+            }
+
+            addUser(user as User)
               .then((response) => {
                 if (response?.status === 200) {
                   toast.success(
@@ -36,7 +64,9 @@ function AddDialogForm() {
                 console.error("Error adding user:", error);
                 toast.error("An error occurred while adding the user.");
               })
-              .finally(() => setLoading(false));
+              .finally(() => {
+                setLoading(false);
+              });
           }, 1000);
         })}
       >
@@ -94,7 +124,7 @@ function AddDialogForm() {
               <FormControl>
                 <Input
                   placeholder="+27 12 345 6789"
-                  {...form.register("cellphone")}
+                  {...form.register("cellphone", { required: true })}
                 />
               </FormControl>
             </FormItem>

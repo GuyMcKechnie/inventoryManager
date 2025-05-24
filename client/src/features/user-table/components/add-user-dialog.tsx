@@ -20,7 +20,7 @@ function AddDialog() {
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Edit User</DialogTitle>
+          <DialogTitle>Add User</DialogTitle>
         </DialogHeader>
         <AddDialogForm />
       </DialogContent>

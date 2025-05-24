@@ -21,14 +21,10 @@ public class User {
 
     @Id
     @JsonIgnore
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "userId")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long userId;
-    @Column(name = "userUUID")
     private String userUUID;
-    @Column(name = "firstName")
     private String firstName;
-    @Column(name = "lastName")
     private String lastName;
     private int type;
     private String email;

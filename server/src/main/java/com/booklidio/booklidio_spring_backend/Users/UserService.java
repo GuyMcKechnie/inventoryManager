@@ -44,10 +44,11 @@ public class UserService {
                 throw new Exception("User with email: " + user.getEmail() + " already exists");
             }
             user.setUserUUID(UUID.randomUUID().toString());
+            logger.info("User object {}", user);
             userRepository.save(user);
         } catch (Exception e) {
-            logger.error("Error adding user", e);
-            throw new RuntimeException("Error adding user", e);
+            logger.error("Error adding user", e.getMessage());
+            throw new RuntimeException("Error adding user");
         }
     }
 
