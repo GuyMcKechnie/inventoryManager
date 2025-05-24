@@ -122,7 +122,10 @@ export const columns: ColumnDef<User>[] = [
     accessorKey: "isBuyer",
     header: "Buyer",
     cell: ({ row }) => {
-      const isBuyer: boolean = row.original.isBuyer;
+      let isBuyer: boolean = false;
+      if (row.original.type == 1 || row.original.type == 2) {
+        isBuyer = true;
+      }
       return booleanChip(isBuyer);
     },
   },
@@ -130,7 +133,10 @@ export const columns: ColumnDef<User>[] = [
     accessorKey: "isSeller",
     header: "Seller",
     cell: ({ row }) => {
-      const isSeller: boolean = row.original.isSeller;
+      let isSeller: boolean = false;
+      if (row.original.type == 0 || row.original.type == 2) {
+        isSeller = true;
+      }
       return booleanChip(isSeller);
     },
   },

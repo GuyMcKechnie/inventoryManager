@@ -1,17 +1,15 @@
 import axiosInstance, { hasInstance } from "@/api/axios";
 import { AxiosResponse } from "axios";
-import { usersSample } from "../data/user-data";
 
 export interface User {
-  userId: string;
+  userUUID: string;
   fullName: string;
   firstName: string;
   lastName: string;
+  type: number;
   email: string;
   cellphone: string;
   allowsMarketing: boolean;
-  isBuyer: boolean;
-  isSeller: boolean;
 }
 
 export const getAllUsers = async (): Promise<User[] | undefined> => {
@@ -20,11 +18,6 @@ export const getAllUsers = async (): Promise<User[] | undefined> => {
       const response: AxiosResponse<User[]> =
         await axiosInstance.get("/users/getAllUsers");
       return response.data.map((user) => ({
-        ...user,
-        fullName: `${user.firstName} ${user.lastName}`,
-      }));
-    } else {
-      return usersSample.map((user) => ({
         ...user,
         fullName: `${user.firstName} ${user.lastName}`,
       }));
