@@ -1,22 +1,26 @@
 package com.booklidio.booklidio_spring_backend.Inventory;
 
-import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Document(collection = "books")
+@Entity
+@Table(name = "books")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Book {
-    @Id
     @JsonIgnore
-    private ObjectId id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String isbn;
     private String title;
     private int grade;
