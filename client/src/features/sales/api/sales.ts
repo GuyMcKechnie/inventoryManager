@@ -1,14 +1,35 @@
-import axiosInstance, { hasInstance } from "@/api/axios";
+import axiosInstance from "@/api/axios";
 import { AxiosResponse } from "axios";
-import { Card } from "@caldwell619/react-kanban";
 
-interface Order {
+export interface Order {
   orderUUID: string;
   buyerId: number;
   status: number;
   date: Date;
-  location: String;
+  location: string;
 }
+
+export const getAllOrders = async (): Promise<Order[] | undefined> => {
+  try {
+    const response: AxiosResponse<Order[]> = await axiosInstance.get(
+      "/orders/getAllOrders",
+    );
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+export const getActiveOrders = async (): Promise<Order[] | undefined> => {
+  try {
+    const response: AxiosResponse<Order[]> = await axiosInstance.get(
+      "/orders/getActiveOrders",
+    );
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const updateOrderStatus = async (
   orderUUID: string,
   _status: number | undefined,

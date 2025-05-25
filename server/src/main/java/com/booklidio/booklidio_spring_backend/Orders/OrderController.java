@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Optional;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping("/api/orders")
@@ -23,6 +25,26 @@ public class OrderController {
     private static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(OrderController.class);
     @Autowired
     private OrderService orderService;
+
+    @GetMapping("/getAllOrders")
+    public ResponseEntity<List<Order>> getAllOrders() {
+        try {
+            return new ResponseEntity<>(orderService.getAllOrders(), HttpStatus.OK);
+        } catch (Exception e) {
+            logger.error("Error getting all orders", e);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/getActiveOrders")
+    public ResponseEntity<List<Order>> getActiveOrders() {
+        try {
+            return new ResponseEntity<>(orderService.getActiveOrders(), HttpStatus.OK);
+        } catch (Exception e) {
+            logger.error("Error getting all orders", e);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     @GetMapping("/getOrder/{orderUUID}")
     public ResponseEntity<Optional<Order>> getOrder(@PathVariable("orderUUID") String orderUUID) {

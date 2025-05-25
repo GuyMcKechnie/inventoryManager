@@ -1,20 +1,20 @@
+import { Button } from "@/components/ui/button";
 import {
-  KanbanBoard,
-  ControlledBoard,
   Card,
+  ControlledBoard,
+  KanbanBoard,
   moveCard,
   OnDragEndNotification,
 } from "@caldwell619/react-kanban";
-import { useState } from "react";
-import { orderBoard } from "../data/kanban-columns";
 import "@caldwell619/react-kanban/dist/styles.css";
 import { Typography } from "@mui/material";
-import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
-import { updateOrderStatus } from "../api/sales";
+import { useState } from "react";
+import { Order, updateOrderStatus } from "../api/sales";
+import { createKanban } from "../helper/create-kanban";
 
-function Kanban() {
-  const [board, setBoard] = useState<KanbanBoard<Card>>(orderBoard);
+function Kanban({ orders }: { orders: Order[] }) {
+  const [board, setBoard] = useState<KanbanBoard<Card>>(createKanban(orders));
   const handleCardMove: OnDragEndNotification<Card> = (
     _card,
     source,

@@ -1,14 +1,47 @@
-import Kanban from "@/features/sales/components/kankan";
+import {
+  getActiveOrders,
+  getAllOrders,
+  Order,
+} from "@/features/sales/api/sales";
+import Kanban from "@/features/sales/components/kanban";
 import TopMetrics from "@/features/sales/components/top-metrics";
+import { createKanban } from "@/features/sales/helper/create-kanban";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
 
 function Sales() {
+  const [loading, setLoading] = useState(false);
+  const [orders, setOrders] = useState<Order[]>([]);
+
+  const updateOrders = async () => {
+    setLoading(true);
+    setTimeout(async () => {
+      const apiResponse = await getActiveOrders()
+        .then((response) => {
+          console.log(response);
+          setOrders(response ?? []);
+        })
+        .catch((error) => {
+          console.error("Error fetching orders:", error);
+          toast.error("An error occurred while fetching orders.");
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }, 1000);
+  };
+
+  useEffect(() => {
+    updateOrders();
+  }, []);
+
   return (
     <div
       id="sales"
       className="flex h-full flex-col gap-4 overflow-y-scroll bg-gray-950 p-4"
     >
       <TopMetrics />
-      <Kanban />
+      <Kanban orders={orders} />
     </div>
   );
 }

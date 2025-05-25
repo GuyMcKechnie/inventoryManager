@@ -1,5 +1,7 @@
 package com.booklidio.booklidio_spring_backend.Orders;
 
+import java.lang.classfile.ClassFile.Option;
+import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -21,6 +23,24 @@ public class OrderService {
         } catch (Exception e) {
             logger.error("Error fetching order with UUID: " + orderUUID, e);
             throw new RuntimeException("Error fetching order with UUID: " + orderUUID, e);
+        }
+    }
+
+    public List<Order> getAllOrders() throws Exception {
+        try {
+            return orderRepository.findAll();
+        } catch (Exception e) {
+            logger.error("Error fetching orders", e);
+            throw new RuntimeException("Error fetching orders", e);
+        }
+    }
+
+    public List<Order> getActiveOrders() throws Exception {
+        try {
+            return orderRepository.findByStatusBetween(0, 3);
+        } catch (Exception e) {
+            logger.error("Error fetching orders", e);
+            throw new RuntimeException("Error fetching orders", e);
         }
     }
 
