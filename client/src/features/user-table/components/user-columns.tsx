@@ -41,13 +41,14 @@ export const columns: ColumnDef<User>[] = [
           table.getIsAllPageRowsSelected() ||
           (table.getIsSomePageRowsSelected() && "indeterminate")
         }
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+        onCheckedChange={(value) => table.toggleAllRowsSelected(!!value)}
         aria-label="Select all"
       />
     ),
     cell: ({ row }) => (
       <Checkbox
         checked={row.getIsSelected()}
+        className="flex size-4 items-center justify-center"
         onCheckedChange={(value) => row.toggleSelected(!!value)}
         aria-label="Select row"
       />
@@ -75,7 +76,9 @@ export const columns: ColumnDef<User>[] = [
         <Button
           className="group"
           variant="link"
-          onClick={() => handleCopy(row.original.fullName)}
+          onClick={() =>
+            handleCopy(row.original.fullName || row.original.firstName)
+          }
         >
           {row.original.fullName}
           <Clipboard className="opacity-0 transition-opacity group-hover:opacity-100" />

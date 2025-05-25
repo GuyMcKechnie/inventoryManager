@@ -85,17 +85,14 @@ function BelowTableComponents(table: any) {
   return (
     <div className="flex w-full items-center justify-between px-2 py-4">
       <Typography className="font-medium whitespace-nowrap text-gray-400">
-        Showing{" "}
         <span className="font-bold text-gray-200">
-          {Math.round(
-            table.getFilteredRowModel().rows.length / table.getPageCount(),
-          )}
+          {Math.round(table.getFilteredSelectedRowModel().rows.length)}
         </span>{" "}
         of{" "}
         <span className="font-bold text-gray-200">
           {table.getFilteredRowModel().rows.length}
         </span>{" "}
-        users
+        row(s) selected.
       </Typography>
       <div className="flex items-center justify-between gap-2">
         <Typography className="font-medium whitespace-nowrap text-gray-400">

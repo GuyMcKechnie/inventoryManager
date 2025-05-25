@@ -22,13 +22,14 @@ export const columns: ColumnDef<Book>[] = [
           table.getIsAllPageRowsSelected() ||
           (table.getIsSomePageRowsSelected() && "indeterminate")
         }
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+        onCheckedChange={(value) => table.toggleAllRowsSelected(!!value)}
         aria-label="Select all"
       />
     ),
     cell: ({ row }) => (
       <Checkbox
         checked={row.getIsSelected()}
+        className="flex size-4 items-center justify-center"
         onCheckedChange={(value) => row.toggleSelected(!!value)}
         aria-label="Select row"
       />
