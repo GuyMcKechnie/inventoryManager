@@ -103,7 +103,7 @@ export const columns: ColumnDef<Book>[] = [
       return (
         <div className="flex flex-col items-start justify-start">
           <Button className="group -mt-2 -mb-2" variant="link">
-            R{row.original.newPrice}
+            R{row.original.newPrice.toFixed(2)}
             <Clipboard className="opacity-0 transition-opacity group-hover:opacity-100" />
           </Button>
         </div>
@@ -118,7 +118,7 @@ export const columns: ColumnDef<Book>[] = [
       return (
         <div className="flex flex-col items-start justify-start">
           <Button className="group -mt-2 -mb-2" variant="link">
-            R{row.original.usedPrice}
+            R{row.original.usedPrice.toFixed(2)}
             <Clipboard className="opacity-0 transition-opacity group-hover:opacity-100" />
           </Button>
         </div>
@@ -133,7 +133,7 @@ export const columns: ColumnDef<Book>[] = [
       return (
         <div className="flex flex-col items-start justify-start">
           <Button className="group -mt-2 -mb-2" variant="link">
-            R{row.original.costPrice}
+            R{row.original.costPrice.toFixed(2)}
             <Clipboard className="opacity-0 transition-opacity group-hover:opacity-100" />
           </Button>
         </div>
