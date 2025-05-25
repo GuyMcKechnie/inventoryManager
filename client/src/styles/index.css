@@ -83,3 +83,36 @@
 #chartContainer .apexcharts-tooltip .apexcharts-tooltip-series-group.active {
   background: #092911 !important;
 }
+
+.react-kanban-board {
+  @apply h-full !max-w-full *:flex *:h-full *:w-full *:items-start *:justify-between *:!gap-4;
+}
+
+/* Card */
+.react-kanban-card,
+.react-kanban-card-skeleton,
+.react-kanban-card--dragging {
+  @apply !w-full !max-w-full !min-w-full rounded-md !border-none !bg-blue-500 transition-transform hover:scale-105;
+}
+
+.react-kanban-card__title {
+}
+
+.react-kanban-card__description {
+  @apply border-red-500;
+}
+
+.react-kanban-column {
+  @apply !m-0 w-full !rounded-lg border !border-gray-700 !bg-gray-800 px-2 py-1 **:w-full;
+}
+.react-kanban-column-header {
+  @apply border-b border-blue-500;
+}
+
+/* 
+You can either style all the board or import our style and override it with the styles you want. Ideally you would render the column instead of overriding CSS, however this may be helpful for you if your use case needs it.
+Class
+react-kanban-column-header
+react-kanban-column-header__button
+react-kanban-column-adder-button
+*/

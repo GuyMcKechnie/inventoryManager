@@ -1,32 +1,22 @@
-import { v4 as uuid } from "uuid";
-import { Package, ShoppingBag } from "lucide-react";
-import React from "react";
-import MetricCard from "../../../components/metric-card";
+import MetricCard, { Metric } from "@/components/metric-card";
+import { Button } from "@/components/ui/button";
 import { People } from "@mui/icons-material";
-
-export interface Metric {
-  id: string;
-  title: string;
-  subtitle: string;
-  metric: string;
-  growthPercentage: number;
-  growthNumber: number;
-  icon: React.ReactNode;
-}
+import { Package, Plus, ShoppingBag } from "lucide-react";
+import { v4 as uuid } from "uuid";
 
 const Metrics = [
   {
     id: uuid(),
-    title: "Total Sales",
-    subtitle: "621 orders",
-    metric: "R12,009,019",
+    title: "Sales",
+    subtitle: "12 returns",
+    metric: "R1,000",
     growthPercentage: 12.5,
-    growthNumber: 1230,
+    growthNumber: 2,
     icon: <ShoppingBag />,
   },
   {
     id: uuid(),
-    title: "Customer Insights",
+    title: "Customer Savings",
     subtitle: "188 reviews",
     metric: "2,190",
     growthPercentage: 19.1,
@@ -35,8 +25,8 @@ const Metrics = [
   },
   {
     id: uuid(),
-    title: "Order Summary",
-    subtitle: "32 cancelled",
+    title: "Orders",
+    subtitle: "3 cancellations",
     metric: "1,909",
     growthPercentage: -12.2,
     growthNumber: 46,

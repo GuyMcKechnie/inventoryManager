@@ -5,11 +5,13 @@ import { Route, BrowserRouter as Router, Routes } from "react-router";
 import Home from "./pages/home";
 import Users from "./pages/users";
 import Inventory from "./pages/inventory";
+import Sales from "./pages/sales";
 
 const routes = [
   { path: "/", element: <Shell content={<Home />} /> },
   { path: "/users", element: <Shell content={<Users />} /> },
   { path: "/inventory", element: <Shell content={<Inventory />} /> },
+  { path: "/sales", element: <Shell content={<Sales />} /> },
 ];
 
 const App = () => {
