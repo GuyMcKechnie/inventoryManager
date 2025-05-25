@@ -11,6 +11,7 @@ import "@caldwell619/react-kanban/dist/styles.css";
 import { Typography } from "@mui/material";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
+import { updateOrderStatus } from "../api/sales";
 
 function Kanban() {
   const [board, setBoard] = useState<KanbanBoard<Card>>(orderBoard);
@@ -22,6 +23,7 @@ function Kanban() {
     setBoard((currentBoard) => {
       return moveCard(currentBoard, source, destination);
     });
+    updateOrderStatus(_card.id, destination?.toColumnId);
   };
   return (
     <div className="flex h-full flex-col gap-6 rounded-lg border border-gray-800 bg-gray-900 p-6">

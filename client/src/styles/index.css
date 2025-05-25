@@ -103,7 +103,7 @@
 }
 
 .react-kanban-column {
-  @apply !m-0 w-full !rounded-lg border !border-gray-700 !bg-gray-800 px-2 py-1 **:w-full;
+  @apply !m-0 !flex w-full !flex-col !gap-2 !rounded-lg border !border-gray-700 !bg-gray-800 px-2 py-1 **:w-full;
 }
 .react-kanban-column-header {
   @apply border-b border-blue-500;
@@ -112,7 +112,6 @@
 /* 
 You can either style all the board or import our style and override it with the styles you want. Ideally you would render the column instead of overriding CSS, however this may be helpful for you if your use case needs it.
 Class
-react-kanban-column-header
 react-kanban-column-header__button
 react-kanban-column-adder-button
 */
