@@ -1,14 +1,15 @@
 import { Card, KanbanBoard } from "@caldwell619/react-kanban";
+import { v4 as uuidv4 } from "uuid";
 import { Order } from "../api/sales";
 import { kanbanColumns } from "../data/kanban-columns";
-import { columns } from "@/features/user-table/components/user-columns";
 
 export const createKanban = (orders: Order[]): KanbanBoard<Card> => {
   let board: KanbanBoard<Card> = { columns: [] };
   board.columns = kanbanColumns;
   orders.forEach((order) => {
     const card: Card = {
-      id: order.orderUUID,
+      id: uuidv4(),
+      orderUUID: order.orderUUID,
       title: `Order from Buyer ID ${order.buyerId} on ${new Date(order.date).toLocaleDateString()}`,
       description: order.location,
     };

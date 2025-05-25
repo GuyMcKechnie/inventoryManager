@@ -23,7 +23,7 @@ function Kanban({ orders }: { orders: Order[] }) {
     setBoard((currentBoard) => {
       return moveCard(currentBoard, source, destination);
     });
-    updateOrderStatus(_card.id, destination?.toColumnId);
+    updateOrderStatus(_card.orderUUID, destination?.toColumnId);
   };
   return (
     <div className="flex h-full flex-col gap-6 rounded-lg border border-gray-800 bg-gray-900 p-6">
