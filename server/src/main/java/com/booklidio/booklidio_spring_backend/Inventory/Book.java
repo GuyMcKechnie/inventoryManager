@@ -22,6 +22,7 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bookId;
     private String isbn;
+    private Long imageId;
     private String title;
     private int grade;
     private double newPrice;

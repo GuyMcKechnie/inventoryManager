@@ -4,6 +4,7 @@ import { sampleBookData } from "../data/book-data";
 
 export interface Book {
   isbn: string;
+  imageId: number;
   title: string;
   grade: number;
   newPrice: number;
@@ -19,9 +20,6 @@ export const getAllBooks = async (): Promise<Book[] | undefined> => {
         await axiosInstance.get("/books/getAllBooks");
       console.log("Books fetched successfully:", response.data);
       return response.data;
-    } else {
-      console.log("Fetching sample books...");
-      return sampleBookData;
     }
   } catch (error) {
     throw error;
