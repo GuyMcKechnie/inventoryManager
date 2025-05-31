@@ -67,8 +67,19 @@ export const columns: ColumnDef<Book>[] = [
   },
   {
     accessorKey: "grade",
-    header: "Grade",
     enableGlobalFilter: true,
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          className="!p-0 text-xs font-medium uppercase"
+        >
+          Grade
+          <ArrowUpDown />
+        </Button>
+      );
+    },
     cell: ({ row }) => {
       return (
         <div className="flex flex-col items-start justify-start">
