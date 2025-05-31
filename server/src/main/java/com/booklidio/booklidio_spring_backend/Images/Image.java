@@ -3,6 +3,7 @@ package com.booklidio.booklidio_spring_backend.Images;
 import java.sql.Blob;
 import java.sql.SQLException;
 
+import com.booklidio.booklidio_spring_backend.Analytics.ReportController;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
@@ -29,17 +30,17 @@ public class Image {
     private Long bookId;
     @JsonIgnore
     private Blob data;
-
-    @Transient // This field will not be persisted in the database
+    @Transient
     private byte[] imageDataBytes;
+
+    private static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(Image.class);
 
     public byte[] getImageDataBytes() {
         if (data != null) {
             try {
                 return data.getBytes(1, (int) data.length());
             } catch (SQLException e) {
-                // Handle the exception appropriately
-                e.printStackTrace();
+                logger.error("SQL Exception getting imageDataBytes: s", e);
                 return null;
             }
         }

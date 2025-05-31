@@ -18,9 +18,7 @@ public class ImageService {
 
     public Optional<Image> getImage(Long bookId) {
         try {
-            // Retrieve the Image entity from the repository
             Optional<Image> imageOptional = imageRepository.findByBookId(bookId);
-
             if (imageOptional.isPresent()) {
                 Image image = imageOptional.get();
                 // Explicitly access imageData to ensure it's loaded
@@ -28,24 +26,22 @@ public class ImageService {
                 if (imageBlob != null) {
                     logger.info("Image data size: " + imageBlob.length() + " bytes");
                     byte[] imageDataBytes = imageBlob.getBytes(1, (int) imageBlob.length());
-                    image.setImageDataBytes(imageDataBytes); // Set the byte array
+                    image.setImageDataBytes(imageDataBytes);
                 } else {
                     logger.warn("Image data is null for bookId: " + bookId);
                 }
                 return imageOptional;
 
             } else {
-                // Image with the given UUID was not found
                 logger.info("Image with bookId {} not found.", bookId);
                 return Optional.empty();
             }
 
         } catch (SQLException e) {
-            logger.error("SQL Error fetching image with bookId: " + bookId, e);
+            logger.error("SQL Error fetching image with bookId: {}", bookId, e);
             throw new RuntimeException("SQL Error fetching image with bookId: " + bookId, e);
         } catch (Exception e) {
-            // Catch any other unexpected exceptions
-            logger.error("Unexpected Error fetching image with bookId: " + bookId, e);
+            logger.error("Unexpected Error fetching image with bookId: {}", bookId, e);
             throw new RuntimeException("Unexpected Error fetching image with bookId: " + bookId, e);
         }
     }
