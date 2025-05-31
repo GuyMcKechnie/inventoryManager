@@ -1,0 +1,10 @@
+declare function partialRight(fn: any, ...args: any[]): (...leftArgs: any[]) => any;
+declare function addInArrayAtPosition(array: any, element: any, position: any): any[];
+declare function removeFromArrayAtPosition(array: any, position: any): any;
+declare function changeElementOfPositionInArray(array: any, from: any, to: any): any;
+export declare const when: <TValue>(value: TValue, predicate?: <TValue_1>(value: TValue_1) => TValue_1) => (callback: (...args: any) => void) => void;
+declare type NonNullable<T> = Exclude<T, null | undefined>;
+export declare const when2: <TValue>(value: TValue, callback: (verifiedValue: Exclude<TValue, null | undefined>) => void, predicate?: <TValue_1>(value: TValue_1) => TValue_1) => void;
+export declare const replaceElementOfArray: (array: any) => (options: any) => any;
+export declare const pickPropOut: (object: any, prop: any) => {};
+export { addInArrayAtPosition, removeFromArrayAtPosition, changeElementOfPositionInArray, partialRight };
