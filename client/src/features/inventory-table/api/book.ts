@@ -1,6 +1,5 @@
 import axiosInstance, { hasInstance } from "@/api/axios";
 import { AxiosResponse } from "axios";
-import { sampleBookData } from "../data/book-data";
 
 export interface Book {
   isbn: string;
@@ -19,6 +18,11 @@ export const getAllBooks = async (): Promise<Book[] | undefined> => {
       const response: AxiosResponse<Book[]> =
         await axiosInstance.get("/books/getAllBooks");
       console.log("Books fetched successfully:", response.data);
+      response.data.forEach((book) => {
+        book.newPrice = +book.newPrice.toFixed(2);
+        book.usedPrice = +book.usedPrice.toFixed(2);
+        book.costPrice = +book.costPrice.toFixed(2);
+      });
       return response.data;
     }
   } catch (error) {

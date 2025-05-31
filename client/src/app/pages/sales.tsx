@@ -6,6 +6,7 @@ import {
 import Kanban from "@/features/sales/components/kanban";
 import TopMetrics from "@/features/sales/components/top-metrics";
 import { createKanban } from "@/features/sales/helper/create-kanban";
+import { Loader } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
@@ -16,7 +17,7 @@ function Sales() {
   const updateOrders = async () => {
     setLoading(true);
     setTimeout(async () => {
-      const apiResponse = await getActiveOrders()
+      await getActiveOrders()
         .then((response) => {
           console.log(response);
           setOrders(response ?? []);
@@ -41,7 +42,13 @@ function Sales() {
       className="flex h-full flex-col gap-4 overflow-y-scroll bg-gray-950 p-4"
     >
       <TopMetrics />
-      <Kanban orders={orders} />
+      {loading ? (
+        <div className="flex h-full w-full items-center justify-center">
+          <Loader />
+        </div>
+      ) : (
+        <Kanban orders={orders} />
+      )}
     </div>
   );
 }

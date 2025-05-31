@@ -67,8 +67,19 @@ export const columns: ColumnDef<Book>[] = [
   },
   {
     accessorKey: "grade",
-    header: "Grade",
     enableGlobalFilter: true,
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          className="!p-0 text-xs font-medium uppercase"
+        >
+          Grade
+          <ArrowUpDown />
+        </Button>
+      );
+    },
     cell: ({ row }) => {
       return (
         <div className="flex flex-col items-start justify-start">
@@ -104,7 +115,7 @@ export const columns: ColumnDef<Book>[] = [
       return (
         <div className="flex flex-col items-start justify-start">
           <Button className="group -mt-2 -mb-2" variant="link">
-            R{row.original.newPrice.toFixed(2)}
+            R{row.original.newPrice}
             <Clipboard className="opacity-0 transition-opacity group-hover:opacity-100" />
           </Button>
         </div>
@@ -119,7 +130,7 @@ export const columns: ColumnDef<Book>[] = [
       return (
         <div className="flex flex-col items-start justify-start">
           <Button className="group -mt-2 -mb-2" variant="link">
-            R{row.original.usedPrice.toFixed(2)}
+            R{row.original.usedPrice}
             <Clipboard className="opacity-0 transition-opacity group-hover:opacity-100" />
           </Button>
         </div>
@@ -134,7 +145,7 @@ export const columns: ColumnDef<Book>[] = [
       return (
         <div className="flex flex-col items-start justify-start">
           <Button className="group -mt-2 -mb-2" variant="link">
-            R{row.original.costPrice.toFixed(2)}
+            R{row.original.costPrice}
             <Clipboard className="opacity-0 transition-opacity group-hover:opacity-100" />
           </Button>
         </div>
