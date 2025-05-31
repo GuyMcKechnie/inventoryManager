@@ -92,7 +92,7 @@
 .react-kanban-card,
 .react-kanban-card-skeleton,
 .react-kanban-card--dragging {
-  @apply !w-full !max-w-full !min-w-full rounded-md !border-none !bg-blue-500 transition-transform hover:scale-105;
+  @apply !w-full !max-w-full !min-w-full rounded-md !border-none !bg-blue-500 transition-transform;
 }
 
 .react-kanban-card__title {
