@@ -39,7 +39,7 @@ function Sales() {
   return (
     <div
       id="sales"
-      className="flex h-full flex-col gap-4 overflow-y-scroll bg-gray-950 p-4"
+      className="flex h-full max-h-screen flex-col gap-4 bg-gray-950 p-4"
     >
       <TopMetrics />
       {loading ? (

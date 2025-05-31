@@ -28,7 +28,7 @@ function Kanban({ orders }: { orders: Order[] }) {
   };
 
   return (
-    <div className="flex h-full flex-col gap-6 rounded-lg border border-gray-800 bg-gray-900 p-6">
+    <div className="flex h-full max-h-[42rem] flex-col gap-6 rounded-lg border border-gray-800 bg-gray-900 p-6">
       <div className="flex items-center justify-between">
         <Typography variant="h6">Order Status</Typography>
         <Button>
