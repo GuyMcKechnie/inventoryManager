@@ -23,6 +23,7 @@ const Metrics = [
     growthPercentage: 12.5,
     growthNumber: 1230,
     icon: <ShoppingBag />,
+    path: "/sales",
   },
   {
     id: uuid(),
@@ -41,6 +42,7 @@ const Metrics = [
     growthPercentage: -12.2,
     growthNumber: 46,
     icon: <Package />,
+    path: "/sales",
   },
 ];
 

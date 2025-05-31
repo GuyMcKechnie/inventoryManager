@@ -1,5 +1,6 @@
 import { ChevronRight, TrendingDown, TrendingUp } from "lucide-react";
 import { Typography } from "@mui/material";
+import { Link } from "react-router";
 
 export interface Metric {
   id: string;
@@ -9,11 +10,14 @@ export interface Metric {
   growthPercentage: number;
   growthNumber: number;
   icon: React.ReactNode;
+  path?: string;
 }
 
 function MetricCard(metric: Metric) {
   return (
-    <div className="flex w-full cursor-pointer flex-col gap-4 rounded-lg border border-gray-800 bg-gray-900 p-4 px-6 transition-colors hover:border-blue-500">
+    <div
+      className={`flex w-full ${metric.path ? "cursor-pointer" : ""} flex-col gap-4 rounded-lg border border-gray-800 bg-gray-900 p-4 px-6 transition-colors`}
+    >
       <div id="header" className="flex items-center justify-between gap-4">
         <div className="flex w-full gap-2">
           <span className="rounded-xl bg-gray-700 p-4">{metric.icon}</span>
@@ -26,7 +30,11 @@ function MetricCard(metric: Metric) {
             </Typography>
           </div>
         </div>
-        <ChevronRight />
+        {metric.path ? (
+          <Link to={metric.path} className="border border-transparent hover:border-blue-500 rounded-lg p-2 transition-all ">
+            <ChevronRight />
+          </Link>
+        ) : null}
       </div>
       <Typography id="content" variant="h4" fontWeight={"bold"} fontSize={26}>
         {metric.metric}
