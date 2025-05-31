@@ -1,7 +1,6 @@
 import MetricCard, { Metric } from "@/components/metric-card";
-import { Button } from "@/components/ui/button";
 import { People } from "@mui/icons-material";
-import { Package, Plus, ShoppingBag } from "lucide-react";
+import { Package, ShoppingBag } from "lucide-react";
 import { v4 as uuid } from "uuid";
 
 const Metrics = [

@@ -1,16 +1,11 @@
-import {
-  getActiveOrders,
-  getAllOrders,
-  Order,
-} from "@/features/sales/api/sales";
+import { getActiveOrders, Order } from "@/features/sales/api/orders";
 import Kanban from "@/features/sales/components/kanban";
 import TopMetrics from "@/features/sales/components/top-metrics";
-import { createKanban } from "@/features/sales/helper/create-kanban";
 import { Loader } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
-function Sales() {
+function Orders() {
   const [loading, setLoading] = useState(false);
   const [orders, setOrders] = useState<Order[]>([]);
 
@@ -38,7 +33,7 @@ function Sales() {
 
   return (
     <div
-      id="sales"
+      id="orders"
       className="flex h-full max-h-screen flex-col gap-4 bg-gray-950 p-4"
     >
       <TopMetrics />
@@ -53,4 +48,4 @@ function Sales() {
   );
 }
 
-export default Sales;
+export default Orders;

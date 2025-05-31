@@ -1,6 +1,6 @@
 import { Card, KanbanBoard } from "@caldwell619/react-kanban";
 import { v4 as uuidv4 } from "uuid";
-import { Order } from "../api/sales";
+import { Order } from "../api/orders";
 import { kanbanColumns } from "../data/kanban-columns";
 
 export const createKanban = (orders: Order[]): KanbanBoard<Card> => {

@@ -13,8 +13,11 @@ import {
 } from "@/components/ui/sidebar";
 import { Typography } from "@mui/material";
 import {
+  Book,
   Box,
   Gauge,
+  Package,
+  Package2,
   PanelLeftIcon,
   PieChart,
   Settings,
@@ -31,19 +34,19 @@ export const sidebarItems = [
     path: "/",
   },
   {
-    name: "Users",
+    name: "Customers",
     icon: <User />,
     path: "/users",
   },
   {
     name: "Inventory",
-    icon: <Box />,
+    icon: <Book />,
     path: "/inventory",
   },
   {
-    name: "Sales",
-    icon: <ShoppingCart />,
-    path: "/sales",
+    name: "Orders",
+    icon: <Package2 />,
+    path: "/orders",
   },
   {
     name: "Purchases",
@@ -84,7 +87,7 @@ export function AppSidebar() {
             <SidebarMenu className="gap-4">
               {sidebarItems.map((item) => (
                 <SidebarMenuItem key={item.name}>
-                  <SidebarMenuButton asChild >
+                  <SidebarMenuButton asChild>
                     <Link to={item.path}>
                       <span>{item.icon}</span>
                       <span>{item.name}</span>
