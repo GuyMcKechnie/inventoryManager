@@ -6,6 +6,7 @@ import {
   SidebarGroupContent,
   SidebarHeader,
   SidebarMenu,
+  SidebarMenuBadge,
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
@@ -66,22 +67,24 @@ export function AppSidebar() {
   return (
     <Sidebar className="bg-gray-900" collapsible="icon">
       <SidebarHeader className="border-b border-gray-800">
-        <SidebarMenu>
-          <div className="flex flex-row gap-2 cursor-default">
-            <img src="../../icon.svg" className="size-8" />
-            <Typography variant="h5" className="!font-bold">
-              Lidio Stock
-            </Typography>
-          </div>
-        </SidebarMenu>
+        <SidebarMenuItem>
+          <SidebarMenuButton asChild>
+            <div className="flex cursor-default flex-row gap-2 hover:bg-transparent active:bg-transparent">
+              <img src="../../icon.svg" className="size-8" />
+              <Typography variant="h5" className="!font-bold">
+                Lidio Stock
+              </Typography>
+            </div>
+          </SidebarMenuButton>
+        </SidebarMenuItem>
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupContent>
-            <SidebarMenu>
+            <SidebarMenu className="gap-4">
               {sidebarItems.map((item) => (
                 <SidebarMenuItem key={item.name}>
-                  <SidebarMenuButton asChild>
+                  <SidebarMenuButton asChild >
                     <Link to={item.path}>
                       <span>{item.icon}</span>
                       <span>{item.name}</span>
