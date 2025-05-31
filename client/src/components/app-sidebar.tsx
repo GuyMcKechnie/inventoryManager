@@ -66,16 +66,14 @@ export function AppSidebar() {
   return (
     <Sidebar className="bg-gray-900" collapsible="icon">
       <SidebarHeader className="border-b border-gray-800">
-        <SidebarMenuItem>
-          <SidebarMenuButton asChild>
-            <Link to="/">
-              <img src="../../icon.svg" className="size-8" />
-              <Typography variant="h5" className="!font-bold">
-                Lidio Stock
-              </Typography>
-            </Link>
-          </SidebarMenuButton>
-        </SidebarMenuItem>
+        <SidebarMenu>
+          <div className="flex flex-row gap-2 cursor-default">
+            <img src="../../icon.svg" className="size-8" />
+            <Typography variant="h5" className="!font-bold">
+              Lidio Stock
+            </Typography>
+          </div>
+        </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
